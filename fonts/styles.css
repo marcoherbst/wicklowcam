@@ -1,0 +1,51 @@
+
+@font-face {
+	font-family: 'AvenirLT-Medium';
+	src: url('AvenirLT-Medium.eot?') format('eot'), 
+	     url('AvenirLT-Medium.woff') format('woff'), 
+	     url('AvenirLT-Medium.ttf')  format('truetype'),
+	     url('AvenirLT-Medium.svg#AvenirLT-Medium') format('svg');
+}
+
+    body {
+    font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+    color: #222222;
+    background: #66bbdd url(gradients_light.png) repeat scroll top left;
+    padding: 0 40px 0px 40px;
+    }
+    .fullBg {
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
+	    overflow: auto;
+	    z-index:1;
+    }
+    .content-outer 
+    {
+    -moz-box-shadow: 0 0 20px #333333;
+    -webkit-box-shadow: 0 0 20px #333333;
+    -goog-ms-box-shadow: 0 0 20px #333333;
+    box-shadow: 0 0 20px #333333;
+    margin-bottom: 1px;
+    min-width: 640px;
+    max-width: 640px;
+    _width: 640px;
+    }/*
+    .content-outer {
+    min-width: 640px;
+    max-width: 640px;
+    _width: 640px;
+    }*/
+
+    .link1{ color:#330EDA; font-size:12px;padding-right:25px;font-weight:bold;}/*2D00D2*/
+    a:link.link1{color:#330EDA; text-decoration:underline;}
+    a:active.link1{color:#330EDA; text-decoration:underline;}
+    a:visited.link1{color:#330EDA; text-decoration:underline;}
+    a:hover.link1{color:#330EDA; text-decoration:none;}
+    
+    .link2{ color:#330EDA; font-size:12px;}/*2D00D2*/
+    a:link.link2{color:#330EDA; text-decoration:underline;}
+    a:active.link2{color:#330EDA; text-decoration:underline;}
+    a:visited.link2{color:#330EDA; text-decoration:underline;}
+    a:hover.link2{color:#330EDA; text-decoration:none;}
+    
