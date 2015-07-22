@@ -1,44 +1,144 @@
 /**
  * jQuery.fullBg
- * Version 1.0
- * Copyright (c) 2010 c.bavota - http://bavotasan.com
  * Dual licensed under MIT and GPL.
- * Date: 02/23/2010
+ * Date: 07/22/2015
 **/
-(function($) {
-    $.fn.fullBg = function() {
-        var bgImg = $(this);
-        alert('sd');
-        bgImg.addClass('fullBg');
+(function () {
+  'use strict';
 
-        function resizeImg() {
-            var imgwidth = bgImg.width();
-            var imgheight = bgImg.height();
+  var isCommonjs = typeof module !== 'undefined' && module.exports;
+  var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
 
-            var winwidth = $(window).width();
-            var winheight = $(window).height();
+  var fn = (function () {
+    var val;
+    var valLength;
 
-            var widthratio = winwidth / imgwidth;
-            var heightratio = winheight / imgheight;
+    var fnMap = [
+      [
+        'requestFullscreen',
+        'exitFullscreen',
+        'fullscreenElement',
+        'fullscreenEnabled',
+        'fullscreenchange',
+        'fullscreenerror'
+      ],
+      // new WebKit
+      [
+        'webkitRequestFullscreen',
+        'webkitExitFullscreen',
+        'webkitFullscreenElement',
+        'webkitFullscreenEnabled',
+        'webkitfullscreenchange',
+        'webkitfullscreenerror'
 
-            var widthdiff = heightratio * imgwidth;
-            var heightdiff = widthratio * imgheight;
+      ],
+      // old WebKit (Safari 5.1)
+      [
+        'webkitRequestFullScreen',
+        'webkitCancelFullScreen',
+        'webkitCurrentFullScreenElement',
+        'webkitCancelFullScreen',
+        'webkitfullscreenchange',
+        'webkitfullscreenerror'
 
-            if (heightdiff > winheight) {
-                bgImg.css({
-                    width: winwidth + 'px',
-                    height: heightdiff + 'px'
-                });
-            } else {
-                bgImg.css({
-                    width: widthdiff + 'px',
-                    height: winheight + 'px'
-                });
-            }
+      ],
+      [
+        'mozRequestFullScreen',
+        'mozCancelFullScreen',
+        'mozFullScreenElement',
+        'mozFullScreenEnabled',
+        'mozfullscreenchange',
+        'mozfullscreenerror'
+      ],
+      [
+        'msRequestFullscreen',
+        'msExitFullscreen',
+        'msFullscreenElement',
+        'msFullscreenEnabled',
+        'MSFullscreenChange',
+        'MSFullscreenError'
+      ]
+    ];
+
+    var i = 0;
+    var l = fnMap.length;
+    var ret = {};
+
+    for (; i < l; i++) {
+      val = fnMap[i];
+      if (val && val[1] in document) {
+        for (i = 0, valLength = val.length; i < valLength; i++) {
+            ret[fnMap[0][i]] = val[i];
         }
-        resizeImg();
-        $(window).resize(function() {
-            resizeImg();
-        });
-    };
-})(jQuery)
+        return ret;
+      }
+    }
+
+      return false;
+  })();
+
+  var screenfull = {
+    request: function (elem) {
+      var request = fn.requestFullscreen;
+
+      elem = elem || document.documentElement;
+
+      // Work around Safari 5.1 bug: reports support for
+      // keyboard in fullscreen even though it doesn't.
+      // Browser sniffing, since the alternative with
+      // setTimeout is even worse.
+      if (/5\.1[\.\d]* Safari/.test(navigator.userAgent)) {
+        elem[request]();
+      } else {
+        elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
+      }
+    },
+    exit: function () {
+      document[fn.exitFullscreen]();
+    },
+    toggle: function (elem) {
+      if (this.isFullscreen) {
+          this.exit();
+      } else {
+          this.request(elem);
+      }
+    },
+    raw: fn
+  };
+
+  if (!fn) {
+    if (isCommonjs) {
+      module.exports = false;
+    } else {
+      window.screenfull = false;
+    }
+    return;
+  }
+
+  Object.defineProperties(screenfull, {
+    isFullscreen: {
+      get: function () {
+          return !!document[fn.fullscreenElement];
+      }
+    },
+    element: {
+      enumerable: true,
+      get: function () {
+          return document[fn.fullscreenElement];
+      }
+    },
+    enabled: {
+      enumerable: true,
+      get: function () {
+          // Coerce to boolean in case of old WebKit
+          return !!document[fn.fullscreenEnabled];
+      }
+    }
+  });
+
+  if (isCommonjs) {
+    module.exports = screenfull;
+  } else {
+    window.screenfull = screenfull;
+  }
+})();
