@@ -69,7 +69,6 @@
                             </div>
                             <div style="width:640px; height:44px; text-align:center; ">
                                 <div style="float:left;margin:10px 0px 10px 0px;">
-                                    <a href="javascript:ShowAbout();" class="link1">About</a>
                                     <a href="javascript:ExitfullBackgroundImage();" class="link1">Full Screen</a>
                                     <a href="javascript:ShowComments();" class="link1">Comments</a>
                                 </div>
@@ -139,78 +138,75 @@
         </tr>
         <tr><td width="100%">&nbsp;</td></tr>
     </table>
-
-                <script type="text/javascript">
-                    var IsFull = false;
-                    var IsShowed = false;
-                    var isShowedAbout = false;
-                    function ShowIcon() {
-                        if (!IsFull) {
-                            var p = $("#fullbackground");
-                            var position = p.position();
-                            $("#divIcon").css("left", (position.left + 600) + "px");
-                            $("#divIcon").css("top", (position.top + 440) + "px");
-                            $("#divIcon").show();
-                        }
-                        else {
-                            $("#divIcon").hide();
-                        }
-                    }
-                    function HideIcon() {
-                        $("#divIcon").hide();
-                    }
-                    function fullBackgroundImage() {
-                        IsFull = true;
-                        $("#fullbackground").fullBg();
-                    }
-                    function ExitfullBackgroundImage() {
-                        if (IsFull) {
-                            $("#fullbackground").width(640);
-                            $("#fullbackground").height(480);
-                            $("#fullbackground").removeClass("fullBg");
-                            IsFull = false;
-                        }
-                        else if (!IsFull) {
-                            IsFull = true;
-                            $("#fullbackground").fullBg();
-                        }
-                    }
-                    function ShowComments() {
-                        if (IsShowed) {
-                            IsShowed = false;
-                            $("#divComments").hide();
-                        }
-                        else if (!IsShowed) {
-                            if (isShowedAbout) {
-                                isShowedAbout = false;
-                                $("#divAbout").hide();
-                            }
-                            $("#divComments").show();
-                            IsShowed = true;
-                        }
-                    }
-                    function ShowAbout() {
-                        if (isShowedAbout) {
-                            isShowedAbout = false;
-                            $("#divAbout").hide();
-                        }
-                        else if (!isShowedAbout) {
-                            if (IsShowed) {
-                                IsShowed = false;
-                                $("#divComments").hide();
-                            }
-                            $("#divAbout").show();
-                            isShowedAbout = true;
-                        }
-                    }
-                    function HideAbout() {
-                        if (isShowedAbout) {
-                            isShowedAbout = false;
-                            $("#divAbout").hide();
-                        }
-                    }
-
-
-                </script>
+    <script type="text/javascript">
+        var IsFull = false;
+        var IsShowed = false;
+        var isShowedAbout = false;
+        function ShowIcon() {
+            if (!IsFull) {
+                var p = $("#fullbackground");
+                var position = p.position();
+                $("#divIcon").css("left", (position.left + 600) + "px");
+                $("#divIcon").css("top", (position.top + 440) + "px");
+                $("#divIcon").show();
+            }
+            else {
+                $("#divIcon").hide();
+            }
+        }
+        function HideIcon() {
+            $("#divIcon").hide();
+        }
+        function fullBackgroundImage() {
+            IsFull = true;
+            $("#fullbackground").fullBg();
+        }
+        function ExitfullBackgroundImage() {
+            if (IsFull) {
+                $("#fullbackground").width(640);
+                $("#fullbackground").height(480);
+                $("#fullbackground").removeClass("fullBg");
+                IsFull = false;
+            }
+            else if (!IsFull) {
+                IsFull = true;
+                $("#fullbackground").fullBg();
+            }
+        }
+        function ShowComments() {
+            if (IsShowed) {
+                IsShowed = false;
+                $("#divComments").hide();
+            }
+            else if (!IsShowed) {
+                if (isShowedAbout) {
+                    isShowedAbout = false;
+                    $("#divAbout").hide();
+                }
+                $("#divComments").show();
+                IsShowed = true;
+            }
+        }
+        function ShowAbout() {
+            if (isShowedAbout) {
+                isShowedAbout = false;
+                $("#divAbout").hide();
+            }
+            else if (!isShowedAbout) {
+                if (IsShowed) {
+                    IsShowed = false;
+                    $("#divComments").hide();
+                }
+                $("#divAbout").show();
+                isShowedAbout = true;
+            }
+        }
+        function HideAbout() {
+            if (isShowedAbout) {
+                isShowedAbout = false;
+                $("#divAbout").hide();
+            }
+        }
+    </script>
 </body>
 </html>
