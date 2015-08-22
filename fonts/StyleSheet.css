@@ -1,0 +1,88 @@
+﻿@font-face {
+  font-family: 'AvenirLT-Medium';
+  src: url('AvenirLT-Medium.eot?') format('eot'),
+       url('AvenirLT-Medium.woff') format('woff'),
+       url('AvenirLT-Medium.ttf') format('truetype'),
+       url('AvenirLT-Medium.svg#AvenirLT-Medium') format('svg');
+}
+
+body {
+  font: normal normal 12px 'AvenirLT-Medium', Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  color: #222222;
+  background: #66bbdd url(../images/gradients_light.png) repeat scroll top left;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.content-outer {
+  -moz-box-shadow: 0 0 20px #333333;
+  -webkit-box-shadow: 0 0 20px #333333;
+  -goog-ms-box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #333333;
+  margin-bottom: 1px;
+  min-width: 640px;
+  max-width: 640px;
+  _width: 640px;
+}
+
+.link1 {
+  color: #330EDA;
+  font-size: 12px;
+  padding-right: 25px;
+  font-weight: bold;
+}
+/*2D00D2*/
+a:link.link1 {
+  color: #330EDA;
+  text-decoration: underline;
+}
+
+a:active.link1 {
+  color: #330EDA;
+  text-decoration: underline;
+}
+
+a:visited.link1 {
+  color: #330EDA;
+  text-decoration: underline;
+}
+
+a:hover.link1 {
+  color: #330EDA;
+  text-decoration: none;
+}
+#wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.container {
+  padding-right: 225px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+}
+
+.container:after {
+  clear: both;
+}
+
+.companies {
+  width:100%;
+  height:44px;
+  text-align:center;
+  background-color:#FFFFFF;
+  border-top:solid 1px #e7e7e7;
+  position: absolute;
+  display: none;
+}
+
+.company {
+  width: 20%;
+}
