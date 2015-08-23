@@ -1,6 +1,6 @@
 # WicklowCam.com
 
-This is the code, on gh-pages, that powers www.wicklowcam.com
+This is the code, that powers www.wicklowcam.com
 
 To change the camera displayed, simply replace the text "wwcam" in index.html with the ID of any other camera.
 
